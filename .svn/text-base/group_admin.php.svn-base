@@ -1,0 +1,41 @@
+<?php
+
+require_once 'facebook.php';
+include_once 'facebook_include.php';
+include_once 'mysqlconnect.php';
+include_once 'admin_include.php';
+
+$group_table="groups";
+$group_id = $_POST["group_id"];
+
+$sql = "SELECT group_id, group_name, street_address, zip FROM groups where regis_status=1";
+$result = mysql_query($sql) or die(mysql_error());
+if (count($result) > 0) {
+echo "<form action='' method='POST'>";
+while ($row = mysql_fetch_array($result)) {
+	echo "<br>";
+	$group_name = $row['group_name'];
+	echo "
+	<input type='checkbox' value='option1' name='".$row['group_id']."'> $group_name<br>
+	<br>";
+}
+echo "
+<p><input type='submit' value='Submit'>
+</form>";
+} else {
+   echo "<p>No pending group approvals";
+}
+
+$sql = "SELECT group_id FROM groups where regis_status=1";
+$result = mysql_query($sql) or die(mysql_error());
+while ($row = mysql_fetch_array($result)) {
+	$gid = $row['group_id'];
+	if (isset($_POST[$gid])) {
+	    echo "Group: $gid is registered";
+	    $query = "UPDATE $group_table SET regis_status=2 WHERE group_id=$gid";
+            mysql_query($query);
+
+	}
+}
+mysql_close();
+

@@ -1,0 +1,24 @@
+<?php
+include_once 'facebook.php';
+$api = "064cf9195ceddfff37f8d44dde422fb1";
+$secret = "83fc78ff5ab6fa6058d77fb570e14bf7";
+$facebook = new Facebook($api,$secret);
+
+echo '<fb:dashboard></fb:dashboard>';
+
+echo '<fb:tabs>
+	<fb:tab-item href="index.php" title="Home" />
+	<fb:tab-item href="group_admin.php" title="Admin" />
+	<fb:tab-item href="search_groups.php" title="Search Chapters" />
+	<fb:tab-item href="register_group.php" title="Register Chapter" />
+	<fb:tab-item href="maps2.php" title="Chapter Map" />
+	<fb:tab-item href="group_admin.php" title="Administator" />
+</fb:tabs>';
+
+<<<<<<< .mine
+?>
+=======
+$profile = $facebook->get_loggedin_user();
+$result = mysql_query("SELECT  * FROM users WHERE user_id = '" . $profile . "'");
+
+?>>>>>>>> .r159

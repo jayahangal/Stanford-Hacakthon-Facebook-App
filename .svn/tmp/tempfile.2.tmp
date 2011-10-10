@@ -1,0 +1,10 @@
+<?php
+<<<<<<< .mine
+?>
+<fb:dashboard>
+	<fb:create-button href="register_group.php">Register Group</fb:create-button>
+	<fb:create-button href="admin.php">Admin Access</fb:create-button>
+</fb:dashboard>
+=======
+include_once 'facebook_include.php';
+?>>>>>>>> .r79
